@@ -4,7 +4,7 @@ class UserPermissionsController {
     this.API = API
     this.$state = $state
 
-    let Permissions = this.API.service('permissions', this.API.all('users'))
+    let Permissions = this.API.service('permissions')
 
     Permissions.getList()
       .then((response) => {
@@ -58,7 +58,7 @@ class UserPermissionsController {
       showLoaderOnConfirm: true,
       html: false
     }, function () {
-      API.one('users').one('permissions', permissionId).remove()
+      API.one('permissions', permissionId).remove()
         .then(() => {
           swal({
             title: 'Deleted!',

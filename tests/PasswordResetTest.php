@@ -9,7 +9,7 @@ class PasswordResetTest extends TestCase
 
     public function testSendEmailWithTokenForResetPassword()
     {
-        $user = factory(App\User::class)->create();
+        $user = factory(App\Models\User::class)->create();
 
         $this->checkEmailContent([
             'title'   => 'Password reset link',
@@ -42,7 +42,7 @@ class PasswordResetTest extends TestCase
 
     public function testResetPasswordWithTokenSuccessfully()
     {
-        $user = factory(App\User::class)->create();
+        $user = factory(App\Models\User::class)->create();
         $reset = factory(PasswordReset::class)->create([
             'email' => $user->email,
         ]);
@@ -57,13 +57,13 @@ class PasswordResetTest extends TestCase
         ])
         ->seeApiSuccess();
 
-        $user = App\User::whereEmail($reset->email)->firstOrFail();
+        $user = App\Models\User::whereEmail($reset->email)->firstOrFail();
         $this->assertTrue(Hash::check($newPassword, $user->password));
     }
 
     public function testResetPasswordWithTokenUnsuccessfully()
     {
-        $user = factory(App\User::class)->create();
+        $user = factory(App\Models\User::class)->create();
         $reset = factory(PasswordReset::class)->create([
             'email' => $user->email,
         ]);

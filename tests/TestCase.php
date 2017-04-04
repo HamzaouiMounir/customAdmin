@@ -91,7 +91,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      */
     private function setAuthUserToken()
     {
-        $authUser = factory(App\User::class)->create();
+        $authUser = factory(App\Models\User::class)->create();
 
         $this->authUser = $authUser;
         $this->authUserToken = JWTAuth::fromUser($authUser);

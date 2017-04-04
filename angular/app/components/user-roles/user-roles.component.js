@@ -4,7 +4,7 @@ class UserRolesController {
     this.API = API
     this.$state = $state
 
-    let Roles = this.API.service('roles', this.API.all('users'))
+    let Roles = this.API.service('roles');
 
     Roles.getList()
       .then((response) => {
@@ -58,7 +58,7 @@ class UserRolesController {
       showLoaderOnConfirm: true,
       html: false
     }, function () {
-      API.one('users').one('roles', roleId).remove()
+      API.one('roles', roleId).remove()
         .then(() => {
           swal({
             title: 'Deleted!',

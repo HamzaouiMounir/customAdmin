@@ -13,7 +13,7 @@ class UserEditController {
 
     let userId = $stateParams.userId
 
-    let Roles = API.service('roles', API.all('users'))
+    let Roles = API.service('roles')
     Roles.getList()
       .then((response) => {
         let systemRoles = []
@@ -26,7 +26,7 @@ class UserEditController {
         this.systemRoles = systemRoles
       })
 
-    let UserData = API.service('show', API.all('users'))
+    let UserData = API.service('users')
     UserData.one(userId).get()
       .then((response) => {
         let userRole = []

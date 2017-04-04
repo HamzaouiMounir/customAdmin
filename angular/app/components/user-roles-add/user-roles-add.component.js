@@ -15,7 +15,7 @@ class UserRolesAddController {
   save (isValid) {
     this.$state.go(this.$state.current, {}, { alerts: 'test' })
     if (isValid) {
-      let Roles = this.API.service('roles', this.API.all('users'))
+      let Roles = this.API.service('', this.API.all('roles'))
       let $state = this.$state
 
       Roles.post({

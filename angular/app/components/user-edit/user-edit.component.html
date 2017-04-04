@@ -14,6 +14,7 @@
           <h3 class="box-title">Edit User</h3>
         </div>
         <form class="form-horizontal" name="userForm" ng-submit="vm.save(userForm.$valid)" novalidate>
+        
           <div class="box-body">
             <div ng-if="vm.alerts" class="alert alert-{{alert.type}}" ng-repeat="alert in vm.alerts">
               <h4>{{alert.title}}</h4>

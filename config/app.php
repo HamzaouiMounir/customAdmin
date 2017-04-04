@@ -165,6 +165,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Bican\Roles\RolesServiceProvider::class,
         LaravelFCM\FCMServiceProvider::class,
+        Ultraware\Roles\RolesServiceProvider::class,
 
     ],
 

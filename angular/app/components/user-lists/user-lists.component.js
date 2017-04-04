@@ -97,7 +97,7 @@ class UserListsController {
       showLoaderOnConfirm: true,
       html: false
     }, function () {
-      API.one('users').one('user', userId).remove()
+      API.one('users', userId).remove()
         .then(() => {
           /*
           swal({

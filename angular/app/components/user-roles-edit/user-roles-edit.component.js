@@ -10,7 +10,7 @@ class UserRolesEditController {
       this.alerts.push($stateParams.alerts)
     }
 
-    let Permissions = API.service('permissions', API.all('users'))
+    let Permissions = API.service('permissions')
 
     Permissions.getList()
       .then((response) => {
@@ -25,7 +25,7 @@ class UserRolesEditController {
       })
 
     let roleId = $stateParams.roleId
-    let Role = API.service('roles-show', API.all('users'))
+    let Role = API.service('roles')
     Role.one(roleId).get()
       .then((response) => {
         let rolePermissions = []

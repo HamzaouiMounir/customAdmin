@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Auth;
-use Bican\Roles\Models\Permission;
-use Bican\Roles\Models\Role;
+use Ultraware\Roles\Models\Permission;
+use Ultraware\Roles\Models\Role;
 use Hash;
 use Illuminate\Http\Request;
 use Input;
@@ -35,8 +35,7 @@ class UserController extends Controller
      *
      * @return JSON
      */
-    public function postUsers(Request $request)
-    //public function postUsers()
+    public function store(Request $request)
     {
 
 
@@ -88,7 +87,7 @@ class UserController extends Controller
      *
      * @return JSON success message
      */
-    public function putMe(Request $request)
+    public function updateMe(Request $request)
     {
         $user = Auth::user();
 
@@ -146,7 +145,7 @@ class UserController extends Controller
      *
      * @return JSON
      */
-    public function getIndex()
+    public function index()
     {
         $users = User::all();
 
@@ -160,7 +159,7 @@ class UserController extends Controller
      *
      * @return JSON
      */
-    public function getShow($id)
+    public function show($id)
     {
         $user = User::find($id);
         $user['role'] = $user
@@ -176,7 +175,7 @@ class UserController extends Controller
      *
      * @return JSON success message
      */
-    public function putShow(Request $request)
+    public function update(Request $request)
     {
         $userForm = array_dot(
             app('request')->only(
@@ -217,7 +216,7 @@ class UserController extends Controller
      *
      * @return JSON success message
      */
-    public function deleteUser($id)
+    public function destroy($id)
     {
         $user = User::find($id);
         $user->delete();

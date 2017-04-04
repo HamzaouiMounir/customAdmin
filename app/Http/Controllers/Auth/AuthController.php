@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use Auth;
-use Bican\Roles\Models\Role;
+use Ultraware\Roles\Models\Role;
 use Illuminate\Http\Request;
 use JWTAuth;
 use Mail;

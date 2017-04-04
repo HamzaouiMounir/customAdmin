@@ -11,7 +11,7 @@ class JwtAuthTest extends TestCase
      */
     public function testSuccessfulLogin()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(App\Models\User::class)->create([
             'password' => bcrypt('test12345'),
             'email_verified' => '1',
         ]);
@@ -31,7 +31,7 @@ class JwtAuthTest extends TestCase
      */
     public function testFailedLogin()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(App\Models\User::class)->create([
             'email_verified' => '1',
         ]);
 
@@ -49,7 +49,7 @@ class JwtAuthTest extends TestCase
      */
     public function testSuccessfulRegistration()
     {
-        $user = factory(App\User::class)->make();
+        $user = factory(App\Models\User::class)->make();
 
         $this->post('/api/auth/register', [
             'name'                  => $user->name,
