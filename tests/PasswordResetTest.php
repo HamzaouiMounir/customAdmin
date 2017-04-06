@@ -1,6 +1,6 @@
 <?php
 
-use App\PasswordReset;
+use App\Models\PasswordReset;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PasswordResetTest extends TestCase

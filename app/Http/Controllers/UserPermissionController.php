@@ -76,7 +76,7 @@ class UserPermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request,$id)
     {
       $permissionForm = Input::get('data');
       $permissionForm['slug'] = str_slug($permissionForm['slug'], '.');

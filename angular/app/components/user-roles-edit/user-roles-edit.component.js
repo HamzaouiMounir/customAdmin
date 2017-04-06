@@ -25,8 +25,8 @@ class UserRolesEditController {
       })
 
     let roleId = $stateParams.roleId
-    let Role = API.service('roles')
-    Role.one(roleId).get()
+    let Role = API.service(roleId,API.all('roles'))
+    Role.one().get()
       .then((response) => {
         let rolePermissions = []
 

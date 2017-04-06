@@ -31,7 +31,7 @@ class UserAddController{
       //  $state.go('app.userlist', { alerts: alert})
       }, function (response) {
         let alert = { type: 'error', 'title': 'Erreur !', msg: response.data.errors.email[0]}
-        console.log(response.data.errors);
+        
         $state.go($state.current, { alerts: alert})
       })
     } else {

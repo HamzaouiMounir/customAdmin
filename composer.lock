@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "56c9c7752ca7bfab25289571cd8c544e",
+    "content-hash": "e3fa7c89abae0d4f1ddbe5adac3f00a1",
     "packages": [
         {
             "name": "barryvdh/laravel-cors",
@@ -477,6 +477,45 @@
                 "parser"
             ],
             "time": "2014-09-09T13:34:57+00:00"
+        },
+        {
+            "name": "douglasresendemaciel/fcm-laravel-notification",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/douglasresendemaciel/fcm-laravel-notification.git",
+                "reference": "69b7c6ada56a24c7353d52bbc13429523ddf3510"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/douglasresendemaciel/fcm-laravel-notification/zipball/69b7c6ada56a24c7353d52bbc13429523ddf3510",
+                "reference": "69b7c6ada56a24c7353d52bbc13429523ddf3510",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "illuminate/contracts": "^5.3",
+                "illuminate/notifications": "^5.3",
+                "illuminate/support": "^5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DouglasResende\\FCM\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Douglas Resende Maciel",
+                    "email": "eu@douglasresende.com"
+                }
+            ],
+            "description": "Driver to connect laravel´s notification system to Google Firebase Cloud Messaging",
+            "time": "2017-03-28 13:46:26"
         },
         {
             "name": "erusev/parsedown",
@@ -4379,7 +4418,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "dingo/api": 20,
-        "bican/roles": 20
+        "bican/roles": 20,
+        "douglasresendemaciel/fcm-laravel-notification": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

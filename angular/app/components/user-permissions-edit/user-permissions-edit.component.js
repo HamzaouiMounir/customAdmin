@@ -11,8 +11,8 @@ class UserPermissionsEditController {
     }
 
     let permissionId = $stateParams.permissionId
-    let Permission = API.service('', API.all('permissions'))
-    Permission.one(permissionId).get()
+    let Permission = API.service(permissionId, API.all('permissions'))
+    Permission.one().get()
       .then((response) => {
         this.permission = API.copy(response)
       })

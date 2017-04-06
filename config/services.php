@@ -59,5 +59,5 @@ return [
         'database_url' => 'https://appandgo-163110.firebaseio.com',
         'secret' => env('FIREBASE_DATABASE_SECRET'),
         'storage_bucket' => env('FIREBASE_STORAGE_BUCKET'), // Only used for JS integration
-    ],
+    ]
 ];

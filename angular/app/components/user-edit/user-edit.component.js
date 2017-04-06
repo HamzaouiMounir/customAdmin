@@ -26,8 +26,8 @@ class UserEditController {
         this.systemRoles = systemRoles
       })
 
-    let UserData = API.service('users')
-    UserData.one(userId).get()
+    let UserData = API.service(userId,API.all('users'))
+    UserData.one().get()
       .then((response) => {
         let userRole = []
         let userResponse = response.plain()

@@ -15,7 +15,8 @@
         "mpociot/laravel-firebase-sync": "^1.0",
         "brozot/laravel-fcm": "^1.2",
         "barryvdh/laravel-cors": "^0.8.2",
-        "ultraware/roles": "^5.4"
+        "ultraware/roles": "^5.4",
+        "douglasresendemaciel/fcm-laravel-notification": "@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

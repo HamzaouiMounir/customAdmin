@@ -119,7 +119,7 @@ class UserListsController {
 
   $onInit () {
 
-    console.log(JSON.stringify(this.$state.params));
+  //  console.log(JSON.stringify(this.$state.params));
   }
 }
 

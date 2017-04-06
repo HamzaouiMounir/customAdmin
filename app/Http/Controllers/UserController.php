@@ -12,6 +12,12 @@ use Input;
 use Validator;
 use JWTAuth;
 use Mail;
+
+use App\Notifications\FCMNotification;
+use LaravelFCM\Message\OptionsBuilder;
+use LaravelFCM\Message\PayloadDataBuilder;
+use LaravelFCM\Message\PayloadNotificationBuilder;
+use FCM;
 /**
  * This controller contains all the provided operations to manage users
  * @Resource("Users", uri="/users")
@@ -38,7 +44,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-
         $this->validate($request, [
             'name'       => 'required|min:3',
             'email'      => 'required|email|unique:users',
@@ -46,7 +51,7 @@ class UserController extends Controller
             'password'   => 'required|min:8',
         ]);
 
-
+                  $notification=new FCMNotification();
                   $verificationCode = str_random(40);
 
                   $user = new User();
@@ -65,8 +70,10 @@ class UserController extends Controller
                       $m->to($request->email, 'test')->subject('Confirmez votre mail');
                   });
           */
+                  $notification->toOneDevice('fvyEUGQw88c:APA91bEkToniKfuxsU5leEe2rEs-Xq_QV-AxtI04opVtdCulWqAJaAjWLwxb-_O8HZfTVfCoXN_1GIxx_SN2ATgj1RxjorC3Q6NiVrGya2-FnvVVG-0LkijNTQvAosFfADniZd-gk1tj','APP and GO: Information',$user->name.' rejoint notre platforme');
 
                   return response()->success(compact('user', 'token'));
+
 
                   /*
                   $user = User::create([
@@ -78,7 +85,21 @@ class UserController extends Controller
                   */
 
     }
+      public function sendNotification($title,$body){
+        $optionBuiler = new OptionsBuilder();
+        $optionBuiler->setTimeToLive(60*20);
+        $option = $optionBuiler->build();
+        $dataBuilder = new PayloadDataBuilder();
+        $dataBuilder->addData(['a_data' => 'my_data']);
 
+        $notificationBuilder = new PayloadNotificationBuilder();
+        $notificationBuilder->setTitle($title)
+                    		->setBody($body)
+                    		->setSound('default');
+
+        $notification = $notificationBuilder->build();
+        $downstreamResponse = FCM::sendTo('fvyEUGQw88c:APA91bEkToniKfuxsU5leEe2rEs-Xq_QV-AxtI04opVtdCulWqAJaAjWLwxb-_O8HZfTVfCoXN_1GIxx_SN2ATgj1RxjorC3Q6NiVrGya2-FnvVVG-0LkijNTQvAosFfADniZd-gk1tj', $option, $notification, null);
+      }
 
 
 

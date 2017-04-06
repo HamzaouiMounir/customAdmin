@@ -34,7 +34,7 @@ class LoginFormController {
 
     this.$auth.login(user)
       .then((response) => {
-        console.log(response)
+
         let data = response.data.data
         let AclService = this.AclService
 
@@ -50,7 +50,7 @@ class LoginFormController {
   }
 
   failedLogin (res) {
-    console.log(res)
+  
     if (res.status == 401) {
       this.loginfailed = true
     } else {
