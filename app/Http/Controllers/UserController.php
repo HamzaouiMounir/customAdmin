@@ -70,7 +70,7 @@ class UserController extends Controller
                       $m->to($request->email, 'test')->subject('Confirmez votre mail');
                   });
           */
-                  $notification->toOneDevice('fvyEUGQw88c:APA91bEkToniKfuxsU5leEe2rEs-Xq_QV-AxtI04opVtdCulWqAJaAjWLwxb-_O8HZfTVfCoXN_1GIxx_SN2ATgj1RxjorC3Q6NiVrGya2-FnvVVG-0LkijNTQvAosFfADniZd-gk1tj','APP and GO: Information',$user->name.' rejoint notre platforme');
+                  $notification->send($this->getUserDeviceTokens(),'APP and GO: Information',$user->name.' rejoint notre platforme');
 
                   return response()->success(compact('user', 'token'));
 
@@ -85,21 +85,7 @@ class UserController extends Controller
                   */
 
     }
-      public function sendNotification($title,$body){
-        $optionBuiler = new OptionsBuilder();
-        $optionBuiler->setTimeToLive(60*20);
-        $option = $optionBuiler->build();
-        $dataBuilder = new PayloadDataBuilder();
-        $dataBuilder->addData(['a_data' => 'my_data']);
 
-        $notificationBuilder = new PayloadNotificationBuilder();
-        $notificationBuilder->setTitle($title)
-                    		->setBody($body)
-                    		->setSound('default');
-
-        $notification = $notificationBuilder->build();
-        $downstreamResponse = FCM::sendTo('fvyEUGQw88c:APA91bEkToniKfuxsU5leEe2rEs-Xq_QV-AxtI04opVtdCulWqAJaAjWLwxb-_O8HZfTVfCoXN_1GIxx_SN2ATgj1RxjorC3Q6NiVrGya2-FnvVVG-0LkijNTQvAosFfADniZd-gk1tj', $option, $notification, null);
-      }
 
 
 
@@ -244,161 +230,16 @@ class UserController extends Controller
         return response()->success('success');
     }
 
-    /**
-     * Get all user roles.
-     *
-     * @return JSON
-     */
-    public function getRoles()
-    {
-        $roles = Role::all();
+  
 
-        return response()->success(compact('roles'));
-    }
 
-    /**
-     * Get role details referenced by id.
-     *
-     * @param int Role ID
-     *
-     * @return JSON
-     */
-    public function getRolesShow($id)
-    {
-        $role = Role::find($id);
+    private function getUserDeviceTokens(){
+      $tokens=array();
+      $users = User::all();
+      foreach ($users as $user) {
+        array_push($tokens,$user->device_notification_token);
+      }
+      return $tokens;
 
-        $role['permissions'] = $role
-                        ->permissions()
-                        ->select(['permissions.name', 'permissions.id'])
-                        ->get();
-
-        return response()->success($role);
-    }
-
-    /**
-     * Update role data and assign permission.
-     *
-     * @return JSON success message
-     */
-    public function putRolesShow()
-    {
-        $roleForm = Input::get('data');
-        $roleData = [
-            'name' => $roleForm['name'],
-            'slug' => $roleForm['slug'],
-            'description' => $roleForm['description'],
-        ];
-
-        $roleForm['slug'] = str_slug($roleForm['slug'], '.');
-        $affectedRows = Role::where('id', '=', intval($roleForm['id']))->update($roleData);
-        $role = Role::find($roleForm['id']);
-
-        $role->detachAllPermissions();
-
-        foreach (Input::get('data.permissions') as $setPermission) {
-            $role->attachPermission($setPermission);
-        }
-
-        return response()->success('success');
-    }
-
-    /**
-     * Create new user role.
-     *
-     * @return JSON
-     */
-    public function postRoles()
-    {
-        $role = Role::create([
-            'name' => Input::get('role'),
-            'slug' => str_slug(Input::get('slug'), '.'),
-            'description' => Input::get('description'),
-        ]);
-
-        return response()->success(compact('role'));
-    }
-
-    /**
-     * Delete user role referenced by id.
-     *
-     * @param int Role ID
-     *
-     * @return JSON
-     */
-    public function deleteRoles($id)
-    {
-        Role::destroy($id);
-
-        return response()->success('success');
-    }
-
-    /**
-     * Get all system permissions.
-     *
-     * @return JSON
-     */
-    public function getPermissions()
-    {
-        $permissions = Permission::all();
-
-        return response()->success(compact('permissions'));
-    }
-
-    /**
-     * Create new system permission.
-     *
-     * @return JSON
-     */
-    public function postPermissions()
-    {
-        $permission = Permission::create([
-            'name' => Input::get('name'),
-            'slug' => str_slug(Input::get('slug'), '.'),
-            'description' => Input::get('description'),
-        ]);
-
-        return response()->success(compact('permission'));
-    }
-
-    /**
-     * Get system permission referenced by id.
-     *
-     * @param int Permission ID
-     *
-     * @return JSON
-     */
-    public function getPermissionsShow($id)
-    {
-        $permission = Permission::find($id);
-
-        return response()->success($permission);
-    }
-
-    /**
-     * Update system permission.
-     *
-     * @return JSON
-     */
-    public function putPermissionsShow()
-    {
-        $permissionForm = Input::get('data');
-        $permissionForm['slug'] = str_slug($permissionForm['slug'], '.');
-        $affectedRows = Permission::where('id', '=', intval($permissionForm['id']))->update($permissionForm);
-
-        return response()->success($permissionForm);
-    }
-
-    /**
-     * Delete system permission referenced by id.
-     *
-     * @param int Permission ID
-     *
-     * @return JSON
-     */
-    public function deletePermissions($id)
-    {
-        Permission::destroy($id);
-
-        return response()->success('success');
     }
 }

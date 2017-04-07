@@ -63,7 +63,7 @@ class FCMNotification extends Notification
         ];
     }
     // this is a custom function that uses FCM notification manager to send a test downstream message to a specified device by its token
-    public function toOneDevice($device_token,$title,$body){
+    public function send($device_token,$title,$body){
       $optionBuiler = new OptionsBuilder();
       $optionBuiler->setTimeToLive(60*20);
       $option = $optionBuiler->build();
