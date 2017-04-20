@@ -37,7 +37,10 @@ class UserRolesEditController {
         response.data.permissions = rolePermissions
 
         this.role = API.copy(response)
-      })
+      }).catch ((errorCallback)=>{
+      //  alert(JSON.stringify(errorCallback));
+            this.$state.go('app.landing')
+      });
   }
 
   save (isValid) {

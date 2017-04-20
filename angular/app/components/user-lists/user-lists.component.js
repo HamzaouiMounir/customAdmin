@@ -5,7 +5,6 @@ class UserListsController {
     this.$state = $state
     this.can = AclService.can
     let Users = this.API.service('users')
-
     Users.getList()
       .then((response) => {
         let dataSet = response.plain()
@@ -59,7 +58,11 @@ class UserListsController {
 
 
         this.displayTable = true
-      })
+      }).catch ((errorCallback)=>{
+      alert(JSON.stringify(errorCallback));
+        this.$state.go('app.landing')
+
+      });
 
     let createdRow = (row) => {
       $compile(angular.element(row).contents())($scope)

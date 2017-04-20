@@ -108,26 +108,48 @@ class AuthController extends Controller
      */
     private function findOrCreateUser($oauthUser, $provider)
     {
-        if ($authUser = User::where('oauth_provider_id', $oauthUser->getId())->where('oauth_provider', '=', $provider)->first()) {
-            //just for mobile response test
-            return $authUser;
-        }
+      if ($authUser = User::where('oauth_provider_id', $oauthUser->getId())->where('oauth_provider', '=', $provider)->first()) {
+          return $authUser;
+      }
+          $user = new User();
+          $user->name=$oauthUser->name;
+          $user->email=$oauthUser->email;
+          $user->password=bcrypt("test");
+          $user->oauth_provider=$provider;
+          $user->oauth_provider_id=$oauthUser->getId();
+          $user->avatar=$oauthUser->avatar;
+          $user->save();
+          return $user;
 
-        return User::create([
-            'name' => $oauthUser->name,
-            'email' => $oauthUser->email,
-            'password'=>bcrypt("test"),
-            'oauth_provider' => $provider,
-            'oauth_provider_id' => $oauthUser->getId(),
-            'avatar' => $oauthUser->avatar,
-        ]);
     }
+
+
+
+    private function refreshRoleAndAbilities($user){
+      $userRole = [];
+      foreach ($user->Roles as $role) {
+          $userRole [] = $role->slug;
+      }
+      return $userRole;
+    }
+
     //This method will handle the Ionic application facebook Oauth
     //It will receive directly yhe oauthProviderId && the provider_name
     public function findUserByProviderToken($provider,$accessToken){
         $oauthUser = Socialite::driver($provider)->userFromToken($accessToken);
-        $user = $this->findOrCreateUser($oauthUser,$provider);
-        return response()->success($user);
+        $authUser = $this->findOrCreateUser($oauthUser,$provider);
+        $credentials = [
+          'name' => $authUser->name,
+          'email' => $authUser->email
+        ];
+        $user = User::whereEmail($credentials['email'])->first();
+        Auth::login($user, true);
+        $user = Auth::user();
+        $token = JWTAuth::fromUser($user);
+        $userRole = $this->refreshRoleAndAbilities($user);
+        $abilities = $this->getRolesAbilities();
+
+        return response()->success(compact('user', 'token','abilities', 'userRole'));
     }
 
     /**

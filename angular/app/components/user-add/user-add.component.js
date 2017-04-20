@@ -9,7 +9,6 @@ class UserAddController{
     this.name = "brian"
     this.password="Mopiou190257"
     this.email="test2@test.com"
-
     if ($stateParams.alerts) {
       this.alerts.push($stateParams.alerts)
     }
@@ -31,7 +30,7 @@ class UserAddController{
       //  $state.go('app.userlist', { alerts: alert})
       }, function (response) {
         let alert = { type: 'error', 'title': 'Erreur !', msg: response.data.errors.email[0]}
-        
+
         $state.go($state.current, { alerts: alert})
       })
     } else {

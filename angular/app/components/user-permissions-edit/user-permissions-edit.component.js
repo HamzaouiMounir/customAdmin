@@ -15,7 +15,11 @@ class UserPermissionsEditController {
     Permission.one().get()
       .then((response) => {
         this.permission = API.copy(response)
-      })
+      }).catch ((errorCallback)=>{
+      //  alert(JSON.stringify(errorCallback));
+        this.$state.go('app.landing')
+
+      });
   }
 
   save (isValid) {

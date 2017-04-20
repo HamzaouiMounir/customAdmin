@@ -25,7 +25,11 @@ class UserRolesController {
         ]
 
         this.displayTable = true
-      })
+      }).catch ((errorCallback)=>{
+      //  alert(JSON.stringify(errorCallback));
+        this.$state.go('app.landing')
+
+      });
 
     let createdRow = (row) => {
       $compile(angular.element(row).contents())($scope)

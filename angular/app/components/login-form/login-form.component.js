@@ -17,8 +17,13 @@ class LoginFormController {
   }
 
   $onInit () {
-    this.email = ''
-    this.password = ''
+
+    if(this.$auth.getToken()!=null){
+        this.$state.go('app.landing')
+    }else{
+      this.email = ''
+      this.password = ''
+    }
   }
 
   login () {
@@ -50,7 +55,7 @@ class LoginFormController {
   }
 
   failedLogin (res) {
-  
+
     if (res.status == 401) {
       this.loginfailed = true
     } else {

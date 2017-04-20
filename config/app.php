@@ -166,7 +166,6 @@ return [
         Bican\Roles\RolesServiceProvider::class,
         LaravelFCM\FCMServiceProvider::class,
         Ultraware\Roles\RolesServiceProvider::class,
-        DouglasResende\FCM\NotificationServiceProvider::class
 
     ],
 
