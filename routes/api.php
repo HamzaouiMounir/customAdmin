@@ -6,11 +6,12 @@ $api->version('v1', function ($api) {
   $api->group(['middleware' => ['api']], function ($api) {
       //$api->resource('auth', 'App\Http\Controllers\Auth\AuthController');
       $api->post('auth/login', 'App\Http\Controllers\Auth\AuthController@postLogin');
-
+      $api->post('auth/register', 'App\Http\Controllers\Auth\AuthController@postRegister');
       //facebook Oauth api call
       //here we are sending to the server provider, id and the accessToken
       $api->get('auth/{provider}/{accessToken}','App\Http\Controllers\Auth\AuthController@findUserByProviderToken');
       // Password Reset Routes...
+      $api->post('password/configure', 'App\Http\Controllers\Auth\AuthController@configurePassword');
       $api->post('auth/password/email', 'App\Http\Controllers\Auth\PasswordResetController@sendResetLinkEmail');
       $api->get('auth/password/verify', 'App\Http\Controllers\Auth\PasswordResetController@verify');
       $api->post('auth/password/reset', 'App\Http\Controllers\Auth\PasswordResetController@reset');

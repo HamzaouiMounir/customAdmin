@@ -4,6 +4,7 @@
     <li><a ui-sref="app.landing"><i class="fa fa-dashboard"></i> Accueil</a></li>
     <li class="active">Liste Utilisateur</li>
   </ol>
+
 </section>
 <section class="content">
   <div class="row">
@@ -22,6 +23,18 @@
 
         </div>
         <div class="box-body" >
+          <div class="col-md-3">
+
+          </div>
+          <div class="nav-tabs-custom col-md-6">
+                    <ul class="nav nav-tabs">
+                      <li class="active"><a ui-sref="#tab_1" data-toggle="tab" aria-expanded="false">Tous</a></li>
+                      <li class=""><a ui-sref="#tab_2" data-toggle="tab" aria-expanded="false">Aujourd'hui</a></li>
+                      <li><a ui-sref="#tab_3" data-toggle="tab" aria-expanded="true">Ce mois</a></li>
+                      <li><a ui-sref="#tab_3" data-toggle="tab" aria-expanded="true">3 derniers mois</a></li>
+                      <li><a ui-sref="#tab_3" data-toggle="tab" aria-expanded="true">Cette année</a></li>
+                    </ul>
+          </div>
           <table  datatable="" width="100%" class="table table-striped table-bordered" ng-if="vm.displayTable" dt-options="vm.dtOptions" dt-columns="vm.dtColumns"></table>
         </div>
       </div>

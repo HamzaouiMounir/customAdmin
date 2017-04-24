@@ -110,6 +110,8 @@ class AuthController extends Controller
     {
       if ($authUser = User::where('oauth_provider_id', $oauthUser->getId())->where('oauth_provider', '=', $provider)->first()) {
           return $authUser;
+      }else if($authUser =User::where('email', $oauthUser->email)->first()){
+        return $authUser;
       }
           $user = new User();
           $user->name=$oauthUser->name;
@@ -120,7 +122,6 @@ class AuthController extends Controller
           $user->avatar=$oauthUser->avatar;
           $user->save();
           return $user;
-
     }
 
 
@@ -254,9 +255,9 @@ class AuthController extends Controller
 
         $token = JWTAuth::fromUser($user);
 
-        Mail::send('emails.userverification', ['verificationCode' => $verificationCode], function ($m) use ($request) {
+        /*Mail::send('emails.userverification', ['verificationCode' => $verificationCode], function ($m) use ($request) {
             $m->to($request->email, 'test')->subject('Email Confirmation');
-        });
+        });*/
 
         return response()->success(compact('user', 'token'));
     }
@@ -267,6 +268,18 @@ class AuthController extends Controller
         $user->device_notification_token=$device_notification_token;
         $user->save();
         return response()->success($user);
+
+    }
+
+    public function configurePassword(Request $request){
+      if($user=User::where('email', $request->email)->first()){
+        $user->email_verified=1;
+        $user->password=bcrypt($request->password);
+        $user->save();
+        return response()->success($user);
+      }else{
+        return response()->error();
+      }
 
     }
 }

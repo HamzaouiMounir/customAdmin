@@ -277,6 +277,34 @@ export function RoutesConfig ($stateProvider, $urlRouterProvider) {
         roleId: null
       }
     })
+    .state('app.interventionlists', {
+      url: '/intervention-lists',
+      data: {
+        auth: true
+      },
+      views: {
+        'main@app': {
+          template: '<intervention-lists></intervention-lists>'
+        }
+      },
+      params: {
+        alerts: null
+      }
+    })
+    .state('app.custormerlists', {
+      url: '/customer-lists',
+      data: {
+        auth: true
+      },
+      views: {
+        'main@app': {
+          template: '<customer-lists></intervention-lists>'
+        }
+      },
+      params: {
+        alerts: null
+      }
+    })
     .state('app.widgets', {
       url: '/widgets',
       data: {

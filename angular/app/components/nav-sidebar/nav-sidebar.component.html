@@ -40,6 +40,117 @@
           <li ng-show="vm.can('manage.users') || vm.can('list.users')" class="active"><a ui-sref='app.userlist'><i class="fa fa-circle-o"></i> <span>Liste Utilisateurs</span></a></li>
         </ul>
       </li>
+      <!-- CLIENT MENU ITEM SECTION-->
+      <li class="treeview" ng-show="vm.can('manage.users') || vm.can('list.users')">
+        <a href="javascript:void(0)">
+          <i class="fa fa-user"></i> <span>Clients</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a ui-sref='app.custormerlists'><i class="fa fa-circle-o"></i> <span>Liste des clients</span></a></li>
+        </ul>
+      </li>
+      <!-- END CLIENT MENU ITEM SECTION-->
+
+      <!-- INTERVENTIONS MENU ITEM SECTION-->
+      <li class="treeview" ng-show="vm.can('manage.users') || vm.can('list.users')">
+        <a href="javascript:void(0)">
+          <i class="fa fa-flag"></i> <span>Interventions</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a ui-sref='app.interventionlists'><i class="fa fa-circle-o"></i> <span>Liste des interventions</span></a></li>
+        </ul>
+      </li>
+      <!-- END INTERVENTIONS MENU ITEM SECTION-->
+
+      <!-- EQUIPMENTS MENU ITEM SECTION-->
+      <li class="treeview" ng-show="vm.can('manage.users') || vm.can('list.users')">
+        <a href="javascript:void(0)">
+          <i class="fa fa-gavel"></i> <span>Équipements</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a ui-sref='#'><i class="fa fa-circle-o"></i> <span>Liste des équipements</span></a></li>
+        </ul>
+      </li>
+      <!-- END EQUIPEMENTS MENU ITEM SECTION-->
+
+      <!-- EQUIPMENTS MENU ITEM SECTION-->
+      <li class="treeview" ng-show="vm.can('manage.users') || vm.can('list.users')">
+        <a href="javascript:void(0)">
+          <i class="fa fa-bolt"></i> <span>Incidents</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a ui-sref='#'><i class="fa fa-circle-o"></i> <span>Liste Utilisateurs</span></a></li>
+        </ul>
+      </li>
+      <!-- END EQUIPEMENTS MENU ITEM SECTION-->
+
+      <!-- EQUIPMENTS MENU ITEM SECTION-->
+      <li class="treeview" ng-show="vm.can('manage.users') || vm.can('list.users')">
+        <a href="javascript:void(0)">
+          <i class="fa fa-bullhorn"></i> <span>Réclamations</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a ui-sref='#'><i class="fa fa-circle-o"></i> <span>Liste Utilisateurs</span></a></li>
+        </ul>
+      </li>
+      <!-- END EQUIPEMENTS MENU ITEM SECTION-->
+
+      <!-- EQUIPMENTS MENU ITEM SECTION-->
+      <li class="treeview" ng-show="vm.can('manage.users') || vm.can('list.users')">
+        <a href="javascript:void(0)">
+          <i class="fa fa-cubes"></i> <span>Gestion des métiers</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a ui-sref='#'><i class="fa fa-circle-o"></i> <span>Liste Utilisateurs</span></a></li>
+        </ul>
+      </li>
+      <!-- END EQUIPEMENTS MENU ITEM SECTION-->
+
+      <!-- EQUIPMENTS MENU ITEM SECTION-->
+      <li class="treeview" ng-show="vm.can('manage.users') || vm.can('list.users')">
+        <a href="javascript:void(0)">
+          <i class="fa  fa-bell"></i> <span>Notifications</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a ui-sref='#'><i class="fa fa-circle-o"></i> <span>Liste Utilisateurs</span></a></li>
+        </ul>
+      </li>
+      <!-- END EQUIPEMENTS MENU ITEM SECTION-->
+
+      <!-- EQUIPMENTS MENU ITEM SECTION-->
+      <li class="treeview" ng-show="vm.can('manage.users') || vm.can('list.users')">
+        <a href="javascript:void(0)">
+          <i class="fa fa-exchange"></i> <span>Passages</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a ui-sref='#'><i class="fa fa-circle-o"></i> <span>Liste Utilisateurs</span></a></li>
+        </ul>
+      </li>
+      <!-- END EQUIPEMENTS MENU ITEM SECTION-->
+
+      <!-- EQUIPMENTS MENU ITEM SECTION-->
+      <li class="treeview" ng-show="vm.can('manage.users') || vm.can('list.users')">
+        <a href="javascript:void(0)">
+          <i class="fa fa-users"></i> <span>Devis</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a ui-sref='#'><i class="fa fa-circle-o"></i> <span>Liste Utilisateurs</span></a></li>
+        </ul>
+      </li>
+      <!-- END EQUIPEMENTS MENU ITEM SECTION-->
+
+      <!-- EQUIPMENTS MENU ITEM SECTION-->
+      <li class="treeview" ng-show="vm.can('manage.users') || vm.can('list.users')">
+        <a href="javascript:void(0)">
+          <i class="fa fa-area-chart"></i> <span>Statitstiques</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li><a ui-sref='#'><i class="fa fa-circle-o"></i> <span>Liste Utilisateurs</span></a></li>
+        </ul>
+      </li>
+      <!-- END EQUIPEMENTS MENU ITEM SECTION-->
+
+      <!-- REGLAGE MENU ITEM SECTION-->
       <li class="treeview" ng-show="vm.can('manage.roles') || vm.can('manage.permissions')">
         <a href="javascript:void(0)">
           <i class="fa fa-cog"></i> <span>Réglages</span> <i class="fa fa-angle-left pull-right"></i>
@@ -49,6 +160,7 @@
           <li ng-show="vm.can('manage.permissions')"><a ui-sref='app.userpermissions'><i class="fa fa-circle-o"></i> <span>Permissions Utilisateur</span></a></li>
         </ul>
       </li>
+      <!-- END REGLAGE MENU ITEM SECTION-->
 <!--
       <li class="treeview">
         <a href="javascript:void(0)">
